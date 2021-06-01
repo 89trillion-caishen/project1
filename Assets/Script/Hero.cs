@@ -7,28 +7,24 @@ using UnityEngine.UI;
 
 public class Hero : MonoBehaviour
 {
-    public Text T;
-    public Image s;
-    public Button B;
+    public Text heroCardCost;
+    public Image heroCardImage;
+    public Button buyHeroCard;
 
+    //购买之后隐藏button
     public void Click()
     {
-        B.gameObject.SetActive(false);
+        buyHeroCard.gameObject.SetActive(false);
     }
 
-    // Start is called bsefore the first frame update
+    // Prefab英雄卡片heroCardCost赋值
     public void Etext(string s){
-    T.text=s;
-    }
-    public void EImage()
-    {
-        
+    heroCardCost.text=s;
     }
     void Start()
     {
         //transform.GetComponent<Image>().Sprite=sprite;
     }
-
     // Update is called once per frame
     void Update()
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 
+//定义实体类，用来存放Json的数据
 class Card
 {
     public int ProductId;
@@ -15,30 +16,36 @@ class Card
 
 public class GameTex : MonoBehaviour
 {
-    public GameObject buy;
-    public GameObject coins;
-    public GameObject hero;
-    public GameObject diamonds;
+    //生成卡片的预设体
+    public GameObject freeCoinPrefab;
+    public GameObject heroCardPrefab;
+    public GameObject freeDiamondsPrefab;
+    public GameObject noCardPrefab;
+
     public  static string moveSpriet;
-    public GameObject Unlocks;
+
+
+    //四种英雄卡片对应的英雄图片
     public Sprite subType7;
     public Sprite subType20;
     public Sprite subType13;
     public Sprite subType18;
-    private List<Card> cardlist;
+
+    //存放实体类的链表
+    private List<Card> cardList;
      void Start()
     {
-       
+        InitTextList ();
     }
 
     void Update ()
     {
-        InitTextList ();
-        //createcard();
     }
+
+    //解析Json，存放到List中
     public void InitTextList()
     {
-        cardlist = new List<Card>();
+        cardList = new List<Card>();
         var n = JSONNode.Parse (moveSpriet);
         var m = n["dailyProduct"];
         for (int i = 0; i < m.Count; i++)
@@ -50,111 +57,102 @@ public class GameTex : MonoBehaviour
             card.num = m[i]["num"];
             card.costGold = m[i]["costGold"];
             card.isPurchased = m[i]["isPurchased"];
-            cardlist.Add(card);
+            cardList.Add(card);
         }
     }
 
+    //根据Json提供的数据显示英雄卡
     public void createcard()
     {
-        int len=cardlist.Count;
-        int n=0;
-        float rl=352.0f;
-        float ud=630.0f;
-        if(len%3!=0)
+        int listLen=cardList.Count;
+        int cardSum=0;
+        //左右上下位移prefab
+        float horizontal_move=352.0f;
+        float vertical_move=630.0f;
+
+        if(listLen%3!=0)
         {
-            n=3*(len/3+1)-len;
+            cardSum=3*(listLen/3+1)-listLen;
         }
-        for(int i=0;i<len;i++)
+
+        //循环生产卡片的Prefab和卡片信息的赋值
+        for(int i=0;i<listLen;i++)
         {
             GameObject newGameObject;
-            if(cardlist[i].type==1){
+            if(cardList[i].type==1){
                    newGameObject = Instantiate (		
-			       coins, transform		
+			       freeCoinPrefab, transform		
                   )as GameObject;	
-                  newGameObject.transform.Translate(Vector3.left * rl);
+                  newGameObject.transform.Translate(Vector3.left * horizontal_move);
             }
-            if(cardlist[i].type==2)
+            if(cardList[i].type==2)
             {
               newGameObject = Instantiate (		
-			  diamonds, 					
+			  freeDiamondsPrefab, 					
 			  transform		
             )as GameObject;
-            newGameObject.transform.Translate(Vector3.left * rl);
+            newGameObject.transform.Translate(Vector3.left * horizontal_move);
             }
-            if(cardlist[i].type==3)
+            if(cardList[i].type==3)
             {
                 
-                if(cardlist[i].subType==7)
+                if(cardList[i].subType==7)
                 {
                    newGameObject = Instantiate (		
-			       hero, 					
+                    heroCardPrefab, 					
 			       transform
                    )as GameObject;
                    Hero h=newGameObject.GetComponent<Hero>();
-                   h.Etext(cardlist[i].costGold.ToString());
-                   
-                   h.s.sprite=subType7;
-                   //transform.GetComponent<Image>().sprite=subType7;
-                    //h.T=cardlist[i].costGold;
-                //   newGameObject.GetComponent<Hero>().sprite
+                   h.heroCardImage.sprite=subType7;
+                   h.Etext(cardList[i].costGold.ToString());
                 }
-                if(cardlist[i].subType==20)
+                if(cardList[i].subType==20)
                 {
                    newGameObject = Instantiate (		
-			       hero, 					
+			       heroCardPrefab, 					
 			       transform
                    )as GameObject;
-                   newGameObject.transform.Translate(Vector3.right * rl);
+                   newGameObject.transform.Translate(Vector3.right * horizontal_move);
                    Hero h=newGameObject.GetComponent<Hero>();
-                   h.Etext(cardlist[i].costGold.ToString());
-                   h.s.sprite=subType20;
+                   h.Etext(cardList[i].costGold.ToString());
+                   h.heroCardImage.sprite=subType20;
                 }
-                if(cardlist[i].subType==13)
+                if(cardList[i].subType==13)
                 {
                    newGameObject = Instantiate (		
-			       hero, 					
+			       heroCardPrefab, 					
 			       transform
                    )as GameObject;
-                   newGameObject.transform.Translate(Vector3.left * rl);
-                   newGameObject.transform.Translate(Vector3.down * ud);
+                   newGameObject.transform.Translate(Vector3.left * horizontal_move);
+                   newGameObject.transform.Translate(Vector3.down * vertical_move);
                    Hero h=newGameObject.GetComponent<Hero>();
-                   h.Etext(cardlist[i].costGold.ToString());
-                   h.s.sprite=subType13;
+                   h.Etext(cardList[i].costGold.ToString());
+                   h.heroCardImage.sprite=subType13;
                 }
 
-                if(cardlist[i].subType==18)
+                if(cardList[i].subType==18)
                 {
                     newGameObject = Instantiate (		
-			       hero, 					
+			       heroCardPrefab, 					
 			       transform
                    )as GameObject;
-                  newGameObject.transform.Translate(Vector3.down * ud);
-                  Hero h=newGameObject.GetComponent<Hero>();
-                  h.Etext(cardlist[i].costGold.ToString());
-                   h.s.sprite=subType18;
+                   newGameObject.transform.Translate(Vector3.down * vertical_move);
+                   Hero h=newGameObject.GetComponent<Hero>();
+                   h.Etext(cardList[i].costGold.ToString());
+                   h.heroCardImage.sprite=subType18;
                 }
-                
             }
         }
-        for(int i=0;i<n;i++)
+        for(int i=0;i<cardSum;i++)
         {
             GameObject newGameObject;
               newGameObject = Instantiate (		
-			  Unlocks, 					
+			  noCardPrefab, 					
 			  transform		
             )as GameObject;
-            newGameObject.transform.Translate(Vector3.right * rl);
-            newGameObject.transform.Translate(Vector3.down * ud);
+            newGameObject.transform.Translate(Vector3.right * horizontal_move);
+            newGameObject.transform.Translate(Vector3.down * vertical_move);
         }
-    }
-
-    public void bought()
-    {
-        GameObject newGameObject;
-        newGameObject = Instantiate (		
-		buy, 					
-		transform
-        )as GameObject;
     }
 
 }
