@@ -59,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\RawIamge\CardCoins.cs" />
-     <Compile Include="Assets\Script\GameTex.cs" />
+     <Compile Include="Assets\Script\AnalyzeJson.cs" />
+     <Compile Include="Assets\Script\CoinDiamondManager.cs" />
+     <Compile Include="Assets\Script\CreateHeroCard.cs" />
      <Compile Include="Assets\Script\HeroCardScript.cs" />
      <Compile Include="Assets\SimpleJSON.cs" />
  <Reference Include="Unity.Timeline.Editor">
@@ -88,6 +90,9 @@
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/caishen/git_code/project1/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>/Users/caishen/git_code/project1/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.4.16f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

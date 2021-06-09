@@ -1,0 +1,11 @@
+# project1
+
+实现功能：点击shop按钮弹出弹窗，该弹窗展示标注图中的每日精选，6个商品位，读取json控制6个商品item的多种状态样式。
+
+有四个脚本：
+AnalyzeJson脚本实现对Json数据的解析并存入CardData的实体类中，然后存入了一个链表中
+CoinDiamondManager脚本实现了单例模式，对界面顶部的金币数和钻石数进行管理和更新
+CreateHeroCard脚本用来实现卡片预制件的生成
+HeroCardScript脚本挂在生成的卡片上，实现对卡片的管理和信息初始化更新
+
+UI布局包括背景和滑动条
