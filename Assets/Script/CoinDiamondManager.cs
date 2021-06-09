@@ -11,14 +11,11 @@ public class CoinDiamondManager : MonoBehaviour
     [SerializeField] private Text diamondSumText;
     private int coinSumInt = 20000;
     private int diamondSumInt = 20000;
-
     public static CoinDiamondManager Instance { get; set; }
-
     void Awake()
     {
         Instance = this;
     }
-    
     //领取或者购买后更新金币和钻石数量
     public void RefreshCoinDiamond(int i)
     {

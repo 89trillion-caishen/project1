@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +22,7 @@ public class HeroCardScript : MonoBehaviour
     [SerializeField] private Sprite clockSprite;
     [SerializeField] private Sprite coin;
     [SerializeField] private Sprite diamond;
-    [SerializeField] private Sprite[] subType=new Sprite[4];
+    [SerializeField] private Sprite[] subTypeSprite=new Sprite[4];
 
     private int coinSumInt = 1000;
     private int diamondSumInt = 1000;
@@ -64,13 +65,14 @@ public class HeroCardScript : MonoBehaviour
             heroCardCost.text = costgold.ToString();
             cardName.text = "Viking Wattion";
             freeText.gameObject.SetActive(false);
-            if (subtype == 7) heroCardImage.sprite = subType[0];
-            if (subtype == 13) heroCardImage.sprite = subType[1];
-            if (subtype == 18) heroCardImage.sprite = subType[2];
-            if (subtype == 20) heroCardImage.sprite = subType[3];
+            if (subtype == 7) heroCardImage.sprite = subTypeSprite[0];
+            if (subtype == 13) heroCardImage.sprite = subTypeSprite[1];
+            if (subtype == 18) heroCardImage.sprite = subTypeSprite[2];
+            if (subtype == 20) heroCardImage.sprite = subTypeSprite[3];
         }
         if (type == 0)
         {
+            //空卡片
             purpleBackGround.gameObject.SetActive(false);
             buySucces.gameObject.SetActive(false);
             buyCardButtom.gameObject.SetActive(false);
@@ -78,4 +80,11 @@ public class HeroCardScript : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        subTypeSprite[0] = Resources.Load<Sprite>("7");
+        subTypeSprite[1] = Resources.Load<Sprite>("13");
+        subTypeSprite[2] = Resources.Load<Sprite>("18");
+        subTypeSprite[3] = Resources.Load<Sprite>("20");
+    }
 }
