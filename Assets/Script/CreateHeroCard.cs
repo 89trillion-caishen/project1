@@ -11,6 +11,7 @@ public class CreateHeroCard : MonoBehaviour
     //生成卡片的预设体
     [SerializeField] private GameObject heroCardPrefab;
     private bool isCreatePrefab = false;
+    private HeroCardScript HeroCardScriptObject;
     
   //生成卡片，获取卡片的脚本，调用脚本里的方法  
     public void CreateCard()
@@ -28,15 +29,12 @@ public class CreateHeroCard : MonoBehaviour
         }
         for (int i = 0; i < listLen; i++)
         {
-            GameObject newGameObject = Instantiate(heroCardPrefab, contentTransform) as GameObject;
-            HeroCardScript HeroCardScriptObject = newGameObject.GetComponent<HeroCardScript>();
+            HeroCardScriptObject = Instantiate(heroCardPrefab, contentTransform).GetComponent<HeroCardScript>();
             HeroCardScriptObject.Init(i,AnalyzeJson.cardList[i].type, AnalyzeJson.cardList[i].subType, AnalyzeJson.cardList[i].costGold);
         }
         for (int i = 0; i < cardSum; i++)
         {
-            GameObject newGameObject;
-            newGameObject = Instantiate(heroCardPrefab, contentTransform) as GameObject;
-            HeroCardScript HeroCardScriptObject = newGameObject.GetComponent<HeroCardScript>();
+            HeroCardScriptObject = Instantiate(heroCardPrefab, contentTransform).GetComponent<HeroCardScript>();;
             HeroCardScriptObject.Init(-1,0,0,0);
         }
     }

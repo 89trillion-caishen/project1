@@ -52,11 +52,12 @@ public class HeroCardScript : MonoBehaviour
                 heroCardImage.sprite = coin;
                 cardName.text = "Coins";
             }
-            if (type == 2)
+            else if (type == 2)
             {
                 heroCardImage.sprite = diamond;
                 cardName.text = "Diamond";
             }
+            heroCardImage.GetComponent<Image>().SetNativeSize();
         }
         if (type == 3)
         {
@@ -69,6 +70,7 @@ public class HeroCardScript : MonoBehaviour
             if (subtype == 13) heroCardImage.sprite = subTypeSprite[1];
             if (subtype == 18) heroCardImage.sprite = subTypeSprite[2];
             if (subtype == 20) heroCardImage.sprite = subTypeSprite[3];
+            heroCardImage.GetComponent<Image>().SetNativeSize();
         }
         if (type == 0)
         {
@@ -77,6 +79,7 @@ public class HeroCardScript : MonoBehaviour
             buySucces.gameObject.SetActive(false);
             buyCardButtom.gameObject.SetActive(false);
             heroCardImage.sprite = clockSprite;
+            heroCardImage.GetComponent<Image>().SetNativeSize();
         }
     }
 
