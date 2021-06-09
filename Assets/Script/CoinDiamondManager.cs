@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//单例模式管理金币和钻石Text
 public class CoinDiamondManager : MonoBehaviour
 {
     [SerializeField] private Text coinSumText;
@@ -17,7 +18,8 @@ public class CoinDiamondManager : MonoBehaviour
     {
         Instance = this;
     }
-
+    
+    //领取或者购买后更新金币和钻石数量
     public void RefreshCoinDiamond(int i)
     {
         if (AnalyzeJson.cardList[i].type == 1)
@@ -41,11 +43,5 @@ public class CoinDiamondManager : MonoBehaviour
     {
         coinSumText.text = coinSumInt.ToString();
         diamondSumText.text = diamondSumInt.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

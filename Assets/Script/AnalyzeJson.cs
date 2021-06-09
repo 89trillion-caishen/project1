@@ -13,6 +13,7 @@ public class CardData
     public int costGold;
     public int isPurchased;
 }
+
 public class AnalyzeJson : MonoBehaviour
 {
     [SerializeField] private TextAsset jsonTxt;

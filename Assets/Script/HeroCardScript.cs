@@ -40,58 +40,35 @@ public class HeroCardScript : MonoBehaviour
     public void Init(int x,int type, int subtype, int costgold)
     {
         i = x;
-        //Debug.Log(type);
-        if (type == 1)
+        if (type < 3)
         {
-            heroCardImage.sprite = coin;
-            cardName.text = "Coins";
             purpleBackGround.gameObject.SetActive(false);
             clockText.gameObject.SetActive(false);
             freeText.gameObject.SetActive(true);
             coinIamge.gameObject.SetActive(false);
-            //金币卡片
+            if (type == 1)
+            {
+                heroCardImage.sprite = coin;
+                cardName.text = "Coins";
+            }
+            if (type == 2)
+            {
+                heroCardImage.sprite = diamond;
+                cardName.text = "Diamond";
+            }
         }
-
-        if (type == 2)
-        {
-            heroCardImage.sprite = diamond;
-            cardName.text = "Diamond";
-            purpleBackGround.gameObject.SetActive(false);
-            clockText.gameObject.SetActive(false);
-            freeText.gameObject.SetActive(true);
-            coinIamge.gameObject.SetActive(false);
-            //钻石卡片
-        }
-
         if (type == 3)
         {
+            //英雄卡片
             clockText.gameObject.SetActive(false);
             heroCardCost.text = costgold.ToString();
             cardName.text = "Viking Wattion";
             freeText.gameObject.SetActive(false);
-            if (subtype == 7)
-            {
-                heroCardImage.sprite = subType[0];
-            }
-
-            if (subtype == 13)
-            {
-
-                heroCardImage.sprite = subType[1];
-            }
-
-            if (subtype == 18)
-            {
-
-                heroCardImage.sprite = subType[2];
-            }
-
-            if (subtype == 20)
-            {
-                heroCardImage.sprite = subType[3];
-            }
+            if (subtype == 7) heroCardImage.sprite = subType[0];
+            if (subtype == 13) heroCardImage.sprite = subType[1];
+            if (subtype == 18) heroCardImage.sprite = subType[2];
+            if (subtype == 20) heroCardImage.sprite = subType[3];
         }
-
         if (type == 0)
         {
             purpleBackGround.gameObject.SetActive(false);
@@ -99,9 +76,6 @@ public class HeroCardScript : MonoBehaviour
             buyCardButtom.gameObject.SetActive(false);
             heroCardImage.sprite = clockSprite;
         }
-
-
-
     }
 
 }

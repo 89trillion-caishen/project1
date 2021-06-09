@@ -11,6 +11,8 @@ public class CreateHeroCard : MonoBehaviour
     //生成卡片的预设体
     [SerializeField] private GameObject heroCardPrefab;
     private bool isCreatePrefab = false;
+    
+  //生成卡片，获取卡片的脚本，调用脚本里的方法  
     public void CreateCard()
     {
         if (isCreatePrefab)
