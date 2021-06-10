@@ -16,6 +16,7 @@ public class CardData
 
 public class AnalyzeJson : MonoBehaviour
 {
+    //Json文件
     [SerializeField] private TextAsset jsonTxt;
     //存放实体类的链表
     public static List<CardData> cardList=new List<CardData>();

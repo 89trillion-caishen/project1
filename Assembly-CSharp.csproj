@@ -60,9 +60,9 @@
   <ItemGroup>
      <Compile Include="Assets\RawIamge\CardCoins.cs" />
      <Compile Include="Assets\Script\AnalyzeJson.cs" />
+     <Compile Include="Assets\Script\CardCanvasManager.cs" />
      <Compile Include="Assets\Script\CoinDiamondManager.cs" />
-     <Compile Include="Assets\Script\CreateHeroCard.cs" />
-     <Compile Include="Assets\Script\HeroCardScript.cs" />
+     <Compile Include="Assets\Script\HeroCardItem.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/caishen/git_code/project1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

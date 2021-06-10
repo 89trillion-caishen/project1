@@ -4,41 +4,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//单例模式管理金币和钻石Text
+//单例模式管理金币和钻石
 public class CoinDiamondManager : MonoBehaviour
 {
-    [SerializeField] private Text coinSumText;
-    [SerializeField] private Text diamondSumText;
+    //初始的金币钻石数
     private int coinSumInt = 20000;
     private int diamondSumInt = 20000;
+    //单例模式
     public static CoinDiamondManager Instance { get; set; }
     void Awake()
     {
         Instance = this;
     }
-    //领取或者购买后更新金币和钻石数量
-    public void RefreshCoinDiamond(int i)
+    private void SetCoinDiamond(int type, int coinDiamondNum)
     {
-        if (AnalyzeJson.cardList[i].type == 1)
+        if (type == 1)
         {
-            coinSumInt += 5000;
-            coinSumText.text = coinSumInt.ToString();
+            coinSumInt += coinDiamondNum;
         }
-        if (AnalyzeJson.cardList[i].type == 2)
+        else
         {
-            diamondSumInt += 5000;
-            diamondSumText.text = diamondSumInt.ToString();
-        }
-        if (AnalyzeJson.cardList[i].type == 3)
-        {
-            coinSumInt -= AnalyzeJson.cardList[i].costGold;
-            coinSumText.text = coinSumInt.ToString();
+            diamondSumInt += coinDiamondNum;
         }
     }
-    // Start is called before the first frame update
-    void Start()
+    
+    public int GetCoinDiamond(int type)
     {
-        coinSumText.text = coinSumInt.ToString();
-        diamondSumText.text = diamondSumInt.ToString();
+        if (type == 1)
+        {
+            return coinSumInt;
+        }
+        else
+        {
+            return diamondSumInt;
+        }
+    }
+    /// <summary>
+    /// 根据type判断增加减少金币和钻石数目
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="chanegNum"></param>
+    public void ChangeCoinDiamond(int type,int chanegNum)
+    {
+        if (type == 2)
+        {
+            SetCoinDiamond(0, chanegNum);
+        }
+        else
+        {
+            SetCoinDiamond(1,-chanegNum);
+        }
     }
 }

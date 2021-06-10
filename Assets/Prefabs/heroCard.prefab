@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce7154dfdd9c4250b3c7cb8a151d688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinSumText: {fileID: 0}
+  coinSumText: {fileID: 3025060229259349197}
   diamondSumText: {fileID: 0}
   purpleBackGround: {fileID: 5713880484942763100}
   heroCardCost: {fileID: 3025060229259349197}
